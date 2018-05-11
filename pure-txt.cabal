@@ -1,0 +1,45 @@
+name:                pure-txt
+version:             0.7.0.0
+synopsis:
+homepage:            github.com/grumply/pure-txt
+license:             BSD3
+license-file:        LICENSE
+author:              Sean Mackenzie
+maintainer:          sean@grump.ly
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  build-depends:
+    base >= 4.8 && < 5,
+    bytestring >= 0.10 && < 0.11,
+    text >= 1.2 && < 1.3,
+    pure-default >= 0.7 && < 1,
+    roles >= 0.2 && < 0.3
+
+  hs-source-dirs: src
+
+  exposed-modules:
+    Pure.Data.Txt
+
+  other-modules:
+    Pure.Data.Txt.Internal
+
+  default-language: Haskell2010
+
+  if (impl(ghcjs))
+
+    build-depends:
+      ghcjs-base >= 0.2 && < 0.3,
+      hashable >= 1.2 && < 1.3
+
+    other-modules:
+      Pure.Data.Txt.Internal.GHCJS
+
+  else
+
+    build-depends:
+
+    other-modules:
+      Pure.Data.Txt.Internal.GHC
