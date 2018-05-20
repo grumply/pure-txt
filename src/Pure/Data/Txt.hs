@@ -25,15 +25,19 @@ import Data.Type.Coercion
 type IsTxt a = Coercible Txt a
 
 instance {-# OVERLAPPABLE #-} IsTxt a => Default a where
+  {-# INLINE def #-}
   def = Pure.Data.Txt.empty
 
 instance {-# OVERLAPPABLE #-} IsTxt a => FromTxt a where
+  {-# INLINE fromTxt #-}
   fromTxt = repack
 
 instance {-# OVERLAPPABLE #-} IsTxt a => ToTxt a where
+  {-# INLINE toTxt #-}
   toTxt = repack
 
 instance {-# OVERLAPPABLE #-} IsTxt a => IsString a where
+  {-# INLINE fromString #-}
   fromString = repack . Txt.pack
 
 {-# INLINE convert #-}
