@@ -22,8 +22,6 @@ library
 
   exposed-modules:
     Pure.Data.Txt
-
-  other-modules:
     Pure.Data.Txt.Internal
 
   default-language: Haskell2010
