@@ -28,6 +28,7 @@ library
     Pure.Data.Txt.Internal
 
   if flag(use-template-haskell)
+    cpp-options: -DUSE_TEMPLATE_HASKELL
     build-depends: template-haskell
 
   if (impl(ghcjs))

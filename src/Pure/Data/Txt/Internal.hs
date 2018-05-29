@@ -1,4 +1,7 @@
 {-# LANGUAGE CPP, PatternSynonyms, ViewPatterns, TypeSynonymInstances, OverloadedStrings #-}
+#ifdef USE_TEMPLATE_HASKELL
+{-# LANGUAGE TemplateHaskell #-}
+#endif
 module Pure.Data.Txt.Internal (module Pure.Data.Txt.Internal, module Export) where
 
 #ifdef __GHCJS__
