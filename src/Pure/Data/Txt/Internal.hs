@@ -54,30 +54,37 @@ pattern Translated t <- (fromTxt . toTxt -> t) where
   Translated f = fromTxt $ toTxt f
 
 instance ToTxt Bool where
+  {-# INLINE toTxt #-}
   toTxt True  = "true"
   toTxt False = "false"
 
 #ifdef USE_TEMPLATE_HASKELL
 instance Lift Txt where
-  lift (unpack -> str) = [| pack str |]
+  lift t = [| pack $(lift $ unpack t) |]
 #endif
 
 instance ToTxt a => ToTxt (Maybe a) where
+  {-# INLINE toTxt #-}
   toTxt (Just a) = toTxt a
   toTxt Nothing = mempty
 
 instance FromTxt a => FromTxt (Maybe a) where
+  {-# INLINE fromTxt #-}
   fromTxt x = if x == mempty then Nothing else Just (fromTxt x)
 
 instance ToTxt () where
+  {-# INLINE toTxt #-}
   toTxt _ = "()"
 
 instance ToTxt BSLC.ByteString where
+  {-# INLINE toTxt #-}
   toTxt = toTxt . TL.decodeUtf8
 
 instance ToTxt BC.ByteString where
+  {-# INLINE toTxt #-}
   toTxt = toTxt . T.decodeUtf8
 
 instance ToTxt Txt where
+  {-# INLINE toTxt #-}
   toTxt = id
 
