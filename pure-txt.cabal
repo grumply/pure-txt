@@ -1,14 +1,17 @@
 name:                pure-txt
-version:             0.7.0.0
-synopsis:
-homepage:            github.com/grumply/pure-txt
+version:             0.8.0.0
+homepage:            purehs.org/doc/pure-txt
 license:             BSD3
 license-file:        LICENSE
-author:              Sean Mackenzie
-maintainer:          sean@grump.ly
+author:              Sean Hickman
+maintainer:          sean@grumply.com
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
+
+source-repository head
+  type: git
+  location: https://github.com/grumply/pure-txt.git
 
 Flag use-template-haskell
      Description: enable template haskell for a Lift Txt instance
@@ -17,11 +20,11 @@ Flag use-template-haskell
 
 library
   build-depends:
-    base >= 4.8 && < 5,
-    pure-default >= 0.7 && < 1,
-    bytestring >= 0.10 && < 0.11,
-    text >= 1.2 && < 1.3,
-    roles >= 0.2 && < 0.3
+    base,
+    pure-default,
+    bytestring,
+    text,
+    roles
 
   exposed-modules:
     Pure.Data.Txt
@@ -33,8 +36,8 @@ library
 
   if (impl(ghcjs))
     build-depends:
-      ghcjs-base >= 0.2 && < 0.3,
-      hashable >= 1.2 && < 1.3
+      ghcjs-base,
+      hashable
 
     other-modules:
       Pure.Data.Txt.Internal.GHCJS

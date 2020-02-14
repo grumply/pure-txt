@@ -3,7 +3,7 @@
 }:
 mkDerivation {
   pname = "pure-txt";
-  version = "0.7.0.0";
+  version = "0.8.0.0";
   src = ./.;
   libraryHaskellDepends = [
     base ghcjs-base bytestring pure-default roles text
