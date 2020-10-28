@@ -165,7 +165,15 @@ instance ToTxt Word where
 
 instance ToTxt Integer where
   {-# INLINE toTxt #-}
-  toTxt = decimal
+  -- There is a bug in the implementation of
+  -- h$jsstringDecInteger that can result in
+  --
+  -- > decimal someInteger => "-"
+  --
+  -- The solution for now is to just go through
+  -- the show instance. Definitely needs some 
+  -- looking into, as it's a pretty nasty bug. 
+  toTxt = toTxt . show
 
 instance ToTxt Float where
   {-# INLINE toTxt #-}
